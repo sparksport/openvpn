@@ -19,6 +19,8 @@ _**Edit this area to include a custom title and description.**_
 
 [CircleCI Orb Docs](https://circleci.com/docs/2.0/orb-intro/#section=configuration) - Docs for using, creating, and publishing CircleCI Orbs.
 
+[OpenVPN (2.x)](https://support.circleci.com/hc/en-us/articles/360049397051-How-to-set-up-a-VPN-connection-during-builds#machine)
+
 ### How to Contribute
 
 We welcome [issues](https://github.com/sparksport/openvpn/issues) to and [pull requests](https://github.com/sparksport/openvpn/pulls) against this repository!
