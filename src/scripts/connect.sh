@@ -7,7 +7,7 @@ if grep -q auth-user-pass /tmp/config.ovpn; then
     echo "Your VPN client is configured with a user-locked profile. Make sure to set the VPN_USERNAME and VPN_PASSWORD environment variables"
     exit 1
   else
-    printf "%s" "$VPN_USERNAME\\n$VPN_PASSWORD" > /tmp/vpn.login
+    echo -e "$VPN_USERNAME\n$VPN_PASSWORD" > /tmp/vpn.login
   fi
 fi
 
@@ -27,18 +27,18 @@ ET_phone_home=$(ss -Hnto state established '( sport = :ssh )' | head -n1 | awk '
 echo $ET_phone_home
 
 if [ -n "$ET_phone_home" ]; then
-  vpn_command+=(--route "$ET_phone_home" 255.255.255.255 net_gateway)
+  vpn_command+=(--route $ET_phone_home 255.255.255.255 net_gateway)
 fi
 
 for IP in $(host runner.circleci.com | awk '{ print $4; }')
   do
-    vpn_command+=(--route "$IP" 255.255.255.255 net_gateway)
+    vpn_command+=(--route $IP 255.255.255.255 net_gateway)
     echo $IP
 done
 
 for SYS_RES_DNS in $(systemd-resolve --status | grep 'DNS Servers'|awk '{print $3}')
   do
-    vpn_command+=(--route "$SYS_RES_DNS" 255.255.255.255 net_gateway)
+    vpn_command+=(--route $SYS_RES_DNS 255.255.255.255 net_gateway)
     echo $SYS_RES_DNS
 done
 
