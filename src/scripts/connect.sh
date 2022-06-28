@@ -7,7 +7,7 @@ if grep -q auth-user-pass /tmp/config.ovpn; then
     echo "Your VPN client is configured with a user-locked profile. Make sure to set the VPN_USERNAME and VPN_PASSWORD environment variables"
     exit 1
   else
-    printf "%s" "$VPN_USERAME\\n$VPN_PASSWORD" > /tmp/vpn.login
+    printf "%s" "$VPN_USERNAME\\n$VPN_PASSWORD" > /tmp/vpn.login
   fi
 fi
 
