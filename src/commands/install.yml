@@ -1,0 +1,5 @@
+description: Install OpenVPN
+steps:
+  - run:
+      name: Install OpenVPN
+      command: <<include(scripts/install.sh)>>

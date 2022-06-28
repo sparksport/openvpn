@@ -1,0 +1,22 @@
+description: Establish OpenVPN connection
+parameters:
+  config:
+    description: ENV var name containing OpenVPN client .ovpn config file content base64 encoded
+    type: env_var_name
+    default: VPN_CONFIG
+  username:
+    description: ENV var name containing OpenVPN username
+    type: env_var_name
+    default: VPN_USERNAME
+  password:
+    description: ENV var name containing OpenVPN password
+    type: env_var_name
+    default: VPN_PASSWORD
+steps:
+  - run:
+      name: VPN Setup
+      background: true
+      command: <<include(scripts/connect.sh)>>
+  - run:
+      name: Wait for the connection to be established and check IP
+      command: <<include(scripts/establish.sh)>>
