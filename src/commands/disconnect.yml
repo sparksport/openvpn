@@ -1,0 +1,6 @@
+description: Install OpenVPN
+steps:
+  - run:
+      name: Disconnect from OpenVPN
+      command: <<include(scripts/disconnect.sh)>>
+      when: always
