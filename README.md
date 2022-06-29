@@ -1,16 +1,40 @@
-# Orb Template
+# CircleCI OpenVPN 2 Orb
 
 
 [![CircleCI Build Status](https://circleci.com/gh/sparksport/openvpn.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/sparksport/openvpn) [![CircleCI Orb Version](https://badges.circleci.com/orbs/sparksport/openvpn.svg)](https://circleci.com/orbs/registry/orb/sparksport/openvpn) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/sparksport/openvpn/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
 
+Set of commands which allow you to establish a OpenVPN connection within a CircleCI build job.
+
+### Recommended executor
+```
+executors:
+    machine:
+      image: ubuntu-2004:202201-02
+```
+See ubuntu-2004:202201-02 notes [here](https://discuss.circleci.com/t/linux-machine-executor-images-2022-january-q1-update/42831) 
 
 
-A project template for Orbs.
+### Required environment variables 
+- `VPN_USERNAME`
+- `VPN_PASSWORD`
+- `VPN_CONFIG`
 
-This repository is designed to be automatically ingested and modified by the CircleCI CLI's `orb init` command.
+`VPN_CONFIG` has to contain a Base64 encoded OpenVPN config file eg. `.ovpn` format.
 
-_**Edit this area to include a custom title and description.**_
+See [CircleCI Documentation](https://circleci.com/docs/2.0/env-vars) for instructions on how you would set this up.
 
+### Usage
+
+Example use as well as a list of available executors, commands, and jobs are available on this orb's [registry page][reg-page].
+```
+jobs:
+    - openvpn/install
+    - openvpn/connect
+    - run:
+        name: your command here
+        command: curl -s http://checkip.amazonaws.com
+    - openvpn/disconnect
+```
 ---
 
 ## Resources
